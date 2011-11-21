@@ -15,8 +15,17 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-
-
+gem 'mongoid'
+gem 'bson_ext'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-twitter'
+gem 'omniauth-weibo'
+gem 'omniauth-identity'
+gem 'slim'
+gem 'twitter-bootstrap-rails'
+gem 'simple_form'
+gem "bcrypt-ruby", :require => "bcrypt"
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
