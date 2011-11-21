@@ -1,0 +1,7 @@
+<h3>All users</h3>
+<% @users.each do |user| %>
+  <div>User: <%=link_to( user.name, user) %> </div>
+  <div>Provider: <%= user.provider %> </div>
+  <div>Image: <%= image_tag( user.image) %> </div>
+  <p/>
+<% end %>
