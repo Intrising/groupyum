@@ -1,0 +1,27 @@
+defaults: &defaults
+  app_name: "myAppName'
+  foot_html: "&copy; My App Inc."
+  domain: "127.0.0.1:3000"    
+  admin_emails: 
+    - "admin@admin.com"
+  google_analytics_key: ""
+  upload_url: "http://127.0.0.1:3000/file"
+  email_sender: 'no-reply@yourinc.com'
+  aws_access_key_id: ''
+  aws_secret_access_key: ''
+  facebook_token: ''
+  facebook_secret: ''
+  twitter_token: ''
+  twitter_secret: ''
+  weibo_token: ''
+  weibo_secret: ''
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
+
