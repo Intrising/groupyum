@@ -26,6 +26,7 @@ gem 'slim'
 gem 'twitter-bootstrap-rails'
 gem 'simple_form'
 gem "bcrypt-ruby", :require => "bcrypt"
+gem "settingslogic"
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
