@@ -7,14 +7,14 @@ defaults: &defaults
   google_analytics_key: ""
   upload_url: "http://127.0.0.1:3000/file"
   email_sender: 'no-reply@yourinc.com'
-  aws_access_key_id: ''
-  aws_secret_access_key: ''
-  facebook_token: ''
-  facebook_secret: ''
-  twitter_token: ''
-  twitter_secret: ''
-  weibo_token: ''
-  weibo_secret: ''
+  #aws_access_key_id: ''
+  #aws_secret_access_key: ''
+  #facebook_token: '170262304775'
+  #facebook_secret: '206d43d56237931d0a987fa8715d4d2e'
+  #twitter_token: 'hfcOmkAsEsTj5FWkq3dDg'
+  #twitter_secret: 'nxfe2VU3EeAX2f8TwaIfAMsE4GIbuBIwQrZMVOK9JXc'
+  #weibo_token: '222286619'
+  #weibo_secret: '0391ee45c00c39419d09ad415c044b46'  
 
 development:
   <<: *defaults
