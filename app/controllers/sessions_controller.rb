@@ -17,6 +17,15 @@ class SessionsController < ApplicationController
   def new
     redirect_to '/auth/facebook'
   end
+  def show_providers
+    #TODO: query all available providers through omniauth api
+    @signinlinks = {
+      :email =>'/auth/identity',
+      :facebook => '/auth/facebook',
+      :twitter => '/auth/twitter',
+      :weibo => '/auth/weibo'
+    }
+  end
   def failure
     redirect_to root_url, :alert => "Authentication error: #{params[:message].humanize}"
   end

@@ -1,0 +1,5 @@
+<h3>you can sign in with</h3>
+<% @signinlinks.each_pair do |provider, link| %>
+  <div><%=link_to( provider, link) %> </div>
+  <p/>
+<% end %>

@@ -11,7 +11,7 @@ Groupyum::Application.routes.draw do
   match '/auth/:provider/callback' => 'sessions#create'
   match '/auth/failure' => 'sessions#failure'
   match '/signout' => 'sessions#destroy', :as => :signout
-  match '/signin' => 'sessions#new', :as => :signin
+  match '/signin' => 'sessions#show_providers', :as => :signin
   # Sample of named route:
   #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
   # This route can be invoked with purchase_url(:id => product.id)
