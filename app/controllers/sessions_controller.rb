@@ -14,17 +14,13 @@ class SessionsController < ApplicationController
     reset_session
     redirect_to root_url, :notice => 'Signed out!'
   end
-  def new
-    redirect_to '/auth/facebook'
-  end
   def show_providers
-    #TODO: query all available providers through omniauth api
     @signinlinks = {
       :email =>'/auth/identity',
-      :facebook => '/auth/facebook',
-      :twitter => '/auth/twitter',
-      :weibo => '/auth/weibo'
     }
+    Settings.authnets.each_key do |k|
+      @signinlinks[k] = "/auth/#{k}"
+    end
   end
   def failure
     redirect_to root_url, :alert => "Authentication error: #{params[:message].humanize}"
