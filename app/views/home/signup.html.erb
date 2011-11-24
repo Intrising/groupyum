@@ -1,0 +1,64 @@
+<% content_for :css_head do %>
+  <%= stylesheet_link_tag "yuser_login" %>
+<% end %>
+<% content_for :js_head do %>
+  <%= javascript_include_tag "yuser_login" %>
+<% end %>
+<% content_for :js_ready do %>
+    yuser_signup_init();
+<% end %>
+
+<div class="span16 page-header">
+	<h1>登錄</h1>
+</div>	
+
+<div class="alert-message success fade in hide" data-alert="alert">
+    <a class="close" href="#">×</a>
+    <p><strong>恭喜!</strong> 新增店家成功.</p>
+</div>
+<div class="alert-message error fade in hide" data-alert="alert">
+    <a class="close" href="#">×</a>
+    <p><strong>輸入錯誤!</strong> 名字不可空白.</p>
+</div>
+
+<div class="row login_methods">
+  <div class="span5 columns loginNew">  
+	<form id="formSignup" class="form-stacked formloginNew">
+        <div>
+            <h3>New to </h3>
+            <div class="clearfix single_field required">
+                <label for="name">Name</label>
+                    <div class="input">
+                        <input class="xlarge" name="name" size="20" type="text">
+                        <span class="help-inline">Small snippet of help text</span>
+                    </div>
+            </div>
+            <div class="clearfix single_field required">
+                <label for="email">Email</label>
+                    <div class="input">
+                        <input class="xlarge" name="email" size="20" type="text">
+                        <span class="help-inline">Small snippet of help text</span>
+                    </div>
+            </div>
+            <div class="clearfix single_field">
+                <label for="password">Password</label>
+                    <div class="input">
+                        <input class="xlarge" name="password" size="20" type="password">
+                        <span class="help-inline">Small snippet of help text</span>
+                    </div>
+            </div>
+            <div class="clearfix single_field">
+                <label for="password_confirmation">Confirm Password</label>
+                    <div class="input">
+                        <input class="xlarge" name="password_confirmation" size="10" type="password">
+                        <span class="help-inline">Small snippet of help text</span>
+                    </div>
+            </div>
+        </div>
+
+		<div style="text-align:center;">
+            <button type="submit" class="btn primary">Sign Me Up!</button>
+        </div>
+	</form>
+  </div>	
+</div>

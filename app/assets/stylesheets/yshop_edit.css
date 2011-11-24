@@ -1,0 +1,167 @@
+﻿/* shop_edit ################################################################### */
+div.shop_edit {
+	margin:20 20px;
+}
+
+.cateCreate_col {
+	text-align: center;
+}
+
+.shopMenu_col {
+	margin-top:40px;
+}
+
+.cateTitle {
+    position:relative;
+    margin: 12px 0;
+    background-color: #EAEAEA;
+    border-bottom: 1px solid #D5D5D5;
+}
+
+.cateTitle a {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0 0 0 22px;
+    color: #551A8B;
+    text-decoration: none;
+    font-size:18px;
+    background: url(http://parisjs.org/images/ico_calendar.png) no-repeat;
+}
+
+.cateContent {
+    margin: 12px 30px;
+    display: none;
+}
+
+.dishContent {
+    display: none;
+}
+
+.dishEditContent.errorEdit {
+    background:#FAE5E3;
+}
+
+.error-block {
+    display: none;
+    color:red;
+    text-align: center;
+}
+
+.dishEditContent, .cateEditContent, .menuEditContent {
+    display: none;
+    background-color: whiteSmoke;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+.dishTitle {    
+    margin: 12px 0;
+    position:relative;
+    background-color: whiteSmoke;
+    border-bottom: 1px solid #E3E3E2;
+}
+
+.dishTitle a {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    color: #551A8B;
+    text-decoration: none;
+    font-size:16px;
+}
+
+.dishImg {
+background: url(http://parisjs.org/images/avatar.png) no-repeat;
+border: 3px solid #EDEDED;
+width: 72px;
+height: 72px;
+float: left;
+}
+
+.dishImg img {
+    background: url(http://parisjs.org/images/avatar.png) no-repeat;
+    width: 72px;
+    height: 72px;
+}
+
+.dishQuestion {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 7px 0 0 95px;
+    font-size: 14px;
+}
+
+.btn.small.cateDelete {
+	position: absolute;
+	top: 0px;
+	right: 80px;
+    padding: 2px 9px 2px;
+	z-index: 10;
+	cursor: pointer;
+}
+
+.btn.small.dishCreate {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+    padding: 2px 9px 2px;
+	z-index: 10;
+	cursor: pointer;
+}
+
+.btn.small.dishDelete {
+	position: absolute;
+	top: 0px;
+	right: 50px;
+    padding: 2px 9px 2px;
+	z-index: 10;
+	cursor: pointer;
+}
+
+
+.btn.small.dishEdit {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+    padding: 2px 9px 2px;
+	z-index: 10;
+	cursor: pointer;
+}
+
+textarea.xxlarge.editArea {
+    margin: 0px; 
+    width: 100%; 
+}
+
+.editBox {
+    margin: 12px 20px;
+    position:relative;
+    border-bottom: 1px solid #E3E3E2;
+    padding: 10px;
+}
+
+.btn.small.dishEditCancel, .btn.small.cateEditCancel, .btn.small.menuEditCancel {
+	position: absolute;
+	bottom:0px;
+	right: 20px;
+    padding: 2px 9px 2px;
+    z-index:5;
+	cursor: pointer;
+}
+
+.btn.small.dishEditPrimary, .btn.small.cateEditPrimary, .btn.small.menuEditPrimary {
+	position: absolute;
+	bottom:0px;
+	right: 70px;
+    padding: 2px 9px 2px;
+    z-index:5;
+	cursor: pointer;
+}
+
+.menuCreate {
+    margin-bottom:10px;
+    display: none;
+}
+

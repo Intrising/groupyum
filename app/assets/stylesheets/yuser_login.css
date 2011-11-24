@@ -1,0 +1,105 @@
+﻿div.login_methods {
+	margin:20 20px;
+}
+
+span.help-inline {
+    display:none;
+}
+
+
+.signup, .register-right {
+font-family: georgia,serif;
+font-style: italic;
+color: #777;
+}
+
+.signup_right .inner {
+width: 75%;
+padding: 0px 50px;
+font-size: 15px;
+line-height: 20px;
+}
+
+.registration-page .authentication {
+width: 185px;
+margin: 0 0 0px 40px;
+}
+
+.authentication {
+font-family: helvetica,arial, sans-serif;
+}
+
+.registration-page .authentication-header {
+font-family: helvetica,arial, sans-serif;
+font-size: 11px;
+font-style: normal;
+margin-top: 15px;
+border: 0px;
+background: 0px;
+}
+
+.authentication-header {
+line-height: 32px;
+font-family: helvetica,arial, sans-serif;
+font-size: 14px;
+vertical-align: center;
+border: 5px solid #EEE;
+padding: 5px;
+background: #EEE;
+}
+
+.registration-page .authentication-header a, .authentication a {
+display: block;
+color: #555;
+padding: 5px 5px;
+border: 1px solid #CCC;
+background: #DDD;
+-moz-border-radius: 3px;
+-khtml-border-radius: 3px;
+-webkit-border-radius: 3px;
+font-size: 11px;
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f3f3f4', endColorstr='#d6d7d9');
+background: -webkit-gradient(linear, left top, left bottom, from(#F3F3F4), to(#D6D7D9));
+background: -moz-linear-gradient(top, #F3F3F4, #D6D7D9);
+}
+.registration-page .authentication-header a, .authentication a {
+display: block;
+color: #555;
+padding: 5px 5px;
+border: 1px solid #CCC;
+background: #DDD;
+-moz-border-radius: 3px;
+-khtml-border-radius: 3px;
+-webkit-border-radius: 3px;
+font-size: 11px;
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f3f3f4', endColorstr='#d6d7d9');
+background: -webkit-gradient(linear, left top, left bottom, from(#F3F3F4), to(#D6D7D9));
+background: -moz-linear-gradient(top, #F3F3F4, #D6D7D9);
+}
+a {
+text-decoration: none;
+cursor: pointer;
+color: #1C75BC;
+}
+
+.login_methods {
+    margin-left:0px;
+}
+
+.columns.loginEmail, .columns.loginSocial {
+    margin-left:20px;
+}
+/*
+.columns.loginEmail:hover {
+    background: #EFEFEF;
+    border: 1px solid #BBB;
+    text-decoration: none;
+}*/
+
+.formloginEmail, .formloginNew {
+    padding:0px;
+}
+
+.loginNew {
+    margin:0px 20px;
+}
