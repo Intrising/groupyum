@@ -1,7 +1,11 @@
 Groupyum::Application.routes.draw do
   resources :users #, :only => [ :list, :show, :edit, :update ]
+  get "home/signup" => "home#signup"
   get "home/index"
   get "home/register"
+  get "favorite" => "favorites#show"
+  get "favorite/show" => "favorites#show"
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
