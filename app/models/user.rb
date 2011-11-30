@@ -7,6 +7,13 @@ class User
   field :image, :type => String
   field :fullinfo, :type => Hash
   attr_protected :provider, :uid, :name, :email, :image, :fullinfo
+  has_many :sent_messages, :class_name=>'Message', :inverse_of=>:sender
+  has_many :received_messages, :class_name=>'Message', :inverse_of=>:recipient
+  #TODO: study how to add the follow modifiers in mongoid.
+  #:order => "#{table_name}.created_at DESC",
+  #:conditions => ["#{table_name}.sender_deleted = ?", false]
+
+
   def self.create_with_omniauth(auth)
     create! do |user|
       user.provider = auth['provider']
@@ -20,4 +27,11 @@ class User
     end
   end
 
+  def unread_messages?
+    self.unread_message_count > 0 ? true : false
+  end
+
+  def unread_message_count
+    self.received_messages.count( :conditions=>{ :read_at=>nil})
+  end
 end
