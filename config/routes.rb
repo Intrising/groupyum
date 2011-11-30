@@ -1,5 +1,12 @@
 Groupyum::Application.routes.draw do
-  resources :users #, :only => [ :list, :show, :edit, :update ]
+  resources :users do
+             resources :messages do
+               collection do
+                 post :delete_selected
+               end
+             end
+           end
+
   get "home/signup" => "home#signup"
   get "home/index"
   get "home/register"
