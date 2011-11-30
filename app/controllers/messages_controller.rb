@@ -17,7 +17,7 @@ class MessagesController < ApplicationController
     if params[:reply_to]
       @reply_to = @user.received_messages.find(params[:reply_to])
       unless @reply_to.nil?
-        @message.to = @reply_to.sender.login
+        @message.to = @reply_to.sender.name
         @message.subject = "Re: #{@reply_to.subject}"
         @message.body = "\n\n*Original message*\n\n #{@reply_to.body}"
       end
@@ -27,10 +27,10 @@ class MessagesController < ApplicationController
   def create
     @message = Message.new(params[:message])
     @message.sender = @user
-    @message.recipient = User.first( :conditions=> {:login=>params[:message][:to]})
+    @message.recipient = User.first( :conditions=> {:name=>params[:message][:to]})
     if @message.save
       flash[:notice] = "Message sent"
-      redirect_to user_messages_path(@user)
+      redirect_to messages_path
     else
       render :action => :new
     end
@@ -46,12 +46,12 @@ class MessagesController < ApplicationController
         }
         flash[:notice] = "#{ndmsgs} Messages deleted"
       end
-      redirect_to user_messages_path( @user)
+      redirect_to messages_path
     end
   end
   
   private
     def set_user
-      @user = User.find(params[:user_id])
+      @user = current_user
     end
 end

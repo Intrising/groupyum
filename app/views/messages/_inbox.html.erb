@@ -18,9 +18,9 @@
 				<td><%= check_box_tag "delete[]", message.id %></td>
 				<td>
 					<% if message.read? %>
-					  <%= link_to h(message.subject), user_message_path(@user, message) %>
+					  <%= link_to h(message.subject), message_path( message) %>
 					<% else %>
-					  <%= link_to "#{h(message.subject)} (unread)", user_message_path(@user, message) %>
+					  <%= link_to "#{h(message.subject)} (unread)", message_path( message) %>
 					<% end %>
 				</td>
 				<td><%= link_to h(message.sender.name), user_path(@user) %></td>
@@ -34,5 +34,5 @@
 		</tr>
 	<% end %>
 </table>
-<%= link_to "Sent", user_messages_path(@user, :mailbox => :sent)%> |
-<%= link_to "Compose", new_user_message_path(@user)%>
+<%= link_to "Sent", messages_path( :mailbox => :sent)%> |
+<%= link_to "Compose", new_message_path%>
