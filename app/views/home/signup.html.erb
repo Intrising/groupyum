@@ -9,21 +9,22 @@
 <% end %>
 
 <div class="span16 page-header">
-	<h1>登錄</h1>
+	<h1>註冊</h1>
 </div>	
 
-<div class="alert-message success fade in hide" data-alert="alert">
-    <a class="close" href="#">×</a>
-    <p><strong>恭喜!</strong> 新增店家成功.</p>
+<div id="alert_area">
 </div>
-<div class="alert-message error fade in hide" data-alert="alert">
-    <a class="close" href="#">×</a>
-    <p><strong>輸入錯誤!</strong> 名字不可空白.</p>
-</div>
+
+<% if flash[:notice] %>
+  <%= javascript_tag do %> 
+	$('#alert_area').empty().append(show_alert("error","註冊失敗!","<%= flash[:notice] %>"));
+	$('#alert_area').children(".alert-message").fadeIn("slow");
+  <% end %>
+<% end %>
 
 <div class="row login_methods">
   <div class="span5 columns loginNew">  
-	<form id="formSignup" class="form-stacked formloginNew">
+	<form id="formSignup" class="form-stacked formloginNew" accept-charset="UTF-8" action="/auth/identity/register" method="post">
         <div>
             <h3>New to </h3>
             <div class="clearfix single_field required">
@@ -57,7 +58,7 @@
         </div>
 
 		<div style="text-align:center;">
-            <button type="submit" class="btn primary">Sign Me Up!</button>
+            <button id="formSignup_btn" type="submit" class="btn primary">Sign Me Up!</button>
         </div>
 	</form>
   </div>	

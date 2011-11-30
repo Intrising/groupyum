@@ -23,6 +23,9 @@ class SessionsController < ApplicationController
     end
   end
   def failure
-    redirect_to root_url, :alert => "Authentication error: #{params[:message].humanize}"
+    redirect_to :back, :notice => "Authentication error: #{params[:message].humanize}"
+  end
+  def signup_failure
+    redirect_to :back, :notice => "The Email account is existed!"
   end
 end

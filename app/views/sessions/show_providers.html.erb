@@ -12,44 +12,46 @@
 	<h1>登錄</h1>
 </div>	
 
-<div class="alert-message success fade in hide" data-alert="alert">
-    <a class="close" href="#">×</a>
-    <p><strong>恭喜!</strong> 新增店家成功.</p>
+<div id="alert_area">
 </div>
-<div class="alert-message error fade in hide" data-alert="alert">
-    <a class="close" href="#">×</a>
-    <p><strong>輸入錯誤!</strong> 名字不可空白.</p>
-</div>
+
+<% if flash[:notice] %>
+  <%= javascript_tag do %> 
+	$('#alert_area').empty().append(show_alert("error","認證失敗!","<%= flash[:notice] %>"));
+	$('#alert_area').children(".alert-message").fadeIn("slow");
+  <% end %>
+<% end %>
 
 <div class="row login_methods">
   <div class="span5 columns loginEmail">  
-	<form id="formloginEmail" class="form-stacked formloginEmail">
+	<!--<form accept-charset="UTF-8" action="/auth/identity/callback" method="post">-->
+	<form id="formSignin" class="form-stacked formloginEmail" accept-charset="UTF-8" action="/auth/identity/callback" method="post">
         <div>
           <h3>Log in</h3>
           <div class="clearfix single_field required">
-            <label for="name">Email</label>
+            <label for="email">Email</label>
             <div class="input">
-                <input class="xlarge" name="name" size="30" type="text">
+                <input class="xlarge" name="auth_key" size="20" type="text">
                 <span class="help-inline">Small snippet of help text</span>
             </div>
           </div>
           <div class="clearfix single_field">
-            <label for="brand">Password</label>
+            <label for="password">Password</label>
               <div class="input">
-                  <input class="xlarge" name="brand" size="10" type="text">
+                  <input class="xlarge" name="password" size="20" type="password">
                   <span class="help-inline">Small snippet of help text</span>
               </div>
           </div>
             
           <div class="clearfix single_field">
             <label>
-              <input type="checkbox" name="optionsCheckboxes" value="option1">
+              <input type="checkbox" name="remember_me" value="1">
               Remember me
             </label>
           </div>
         </div>
 		<div style="text-align:center;">
-          <button type="submit" class="btn primary">Submit</button>
+          <button id="formSignin_btn" type="submit" class="btn primary">Submit</button>
         </div>
         <br>
         <p><a href="/users/password/new">Forgot your password?</a>

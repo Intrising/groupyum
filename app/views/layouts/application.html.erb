@@ -6,7 +6,7 @@
   <%= csrf_meta_tags %>
   <%= stylesheet_link_tag    "application", "base" %>
   <%= yield :css_head %>
-  <%= javascript_include_tag "application", "jquery.form" %>
+  <%= javascript_include_tag "application", "base", "jquery.form" %>
   <%= yield :js_head %>
   <%= javascript_tag do %> 
     $(document).ready(function() { 
