@@ -1,6 +1,65 @@
-<%= form_for(@user) do |f| %>
-  <%= f.label :email %>
-  <%= f.text_field :email %>
-  <br />
-  <%= f.submit "Sign in" %>
+<% content_for :css_head do %>
+  <%= stylesheet_link_tag "yuser_login" %>
 <% end %>
+<% content_for :js_head do %>
+  <%= javascript_include_tag "yuser_login" %>
+<% end %>
+<% content_for :js_ready do %>
+    yuser_edit_init();
+<% end %>
+
+<div class="span16 page-header">
+	<h1>個人資料</h1>
+</div>	
+
+<div id="alert_area">
+</div>
+
+<% if flash[:notice] %>
+  <%= javascript_tag do %> 
+	$('#alert_area').empty().append(show_alert("success","恭喜!","<%= flash[:notice] %>"));
+	$('#alert_area').children(".alert-message").fadeIn("slow");
+  <% end %>
+<% end %>
+
+<% if @user.email.empty? || @user.email.blank? %>
+  <%= javascript_tag do %> 
+	$('#alert_area').empty().append(show_alert("error","請輸入您的 Email !","<%= flash[:notice] %>"));
+	$('#alert_area').children(".alert-message").fadeIn("slow");
+  <% end %>
+<% end %>
+
+
+<div class="row login_methods">
+  <div class="span5 columns loginNew">  
+	<%= form_for(@user, :html => { :id=>'formUsrEdit', :class => 'form-stacked formloginNew' }) do |f| %>
+      <div>
+          <div class="clearfix single_field required">
+              <label for="name">Name</label>
+                  <div class="input">
+                      <input class="xlarge" name="name" size="20" type="text" value="<%= @user.name %>" <%= 'disabled' if @user.email.empty? || @user.email.blank? %>>
+                      <span class="help-inline">Small snippet of help text</span>
+                  </div>
+          </div>
+          <div class="clearfix single_field required">
+              <label for="email">Email</label>
+                  <div class="input">
+                      <input class="xlarge" name="user[email]" size="20" type="text" value="<%= @user.email if @user.email %>" <%= 'disabled' if !@user.email.empty? && !@user.email.blank? %>>
+                      <span class="help-inline">Small snippet of help text</span>
+                  </div>
+          </div>
+          <div class="clearfix single_field">
+              <label for="provider">Provider</label>
+                  <div class="input">
+                      <input class="xlarge" name="provider" size="20" type="text" value="<%= @user.provider if @user.provider %>" disabled>
+                      <span class="help-inline">Small snippet of help text</span>
+                  </div>
+          </div>
+      </div>
+
+	  <div style="text-align:center;">
+          <button id="formUsrEdit_btn" type="submit" class="btn primary">Submit</button>
+      </div>
+	<% end %>
+  </div>	
+</div>

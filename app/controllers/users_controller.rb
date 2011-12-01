@@ -5,15 +5,18 @@ class UsersController < ApplicationController
     @users = User.all
   end
   def show
-    @user = User.find(params[:id])
+    render :edit
+    #@user = User.find(params[:id])
   end
   def edit
     @user = User.find(params[:id])
   end
   def update
+    logger.info(params.inspect)
     @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
-      redirect_to @user
+      render 'users/edit', :notice => 'The Email account is success!'
+      #redirect_to @user
     else
       render :edit
     end

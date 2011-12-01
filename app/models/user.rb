@@ -6,7 +6,7 @@ class User
   field :email, :type => String
   field :image, :type => String
   field :fullinfo, :type => Hash
-  attr_protected :provider, :uid, :name, :email, :image, :fullinfo
+  attr_protected :provider, :uid, :password, :fullinfo
   has_many :sent_messages, :class_name=>'Message', :inverse_of=>:sender
   has_many :received_messages, :class_name=>'Message', :inverse_of=>:recipient
   #TODO: study how to add the follow modifiers in mongoid.
@@ -33,5 +33,8 @@ class User
 
   def unread_message_count
     self.received_messages.count( :conditions=>{ :read_at=>nil})
+  end
+end
+)
   end
 end
