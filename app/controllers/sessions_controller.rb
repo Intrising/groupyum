@@ -1,8 +1,15 @@
 class SessionsController < ApplicationController
+  def register_new_user( auth)
+    user=User.create_with_omniauth(auth)
+    if user.provider == 'identity'
+      UserMailer.confirm( user).deliver
+    end
+    user
+  end
+
   def create
-    #raise request.env["omniauth.auth"].to_yaml
     auth = request.env["omniauth.auth"]
-    @user = User.where(:provider => auth['provider'], :uid => auth['uid']).first || User.create_with_omniauth(auth)
+    @user = User.where(:provider => auth['provider'], :uid => auth['uid']).first || self.register_new_user( auth)
     session[:user_id] = @user.id
     if @user.email.empty? || @user.email.blank?
       render 'users/edit', :notice => 'Please enter your email address.'

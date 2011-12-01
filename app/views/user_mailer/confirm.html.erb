@@ -3,5 +3,5 @@
 <label> 您好 <%= @user.name %>, </label> <br />
 </p>
 <p>
-我們已經收到您的註冊請求, 請點選 <%= link_to '這裡',user_url(@user) %> 啟用帳號
+我們已經收到您的註冊請求, 請點選 <%= link_to '這裡', "#{activate_url}?actcode=#{@user.id}" %> 啟用帳號
 </p>

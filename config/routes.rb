@@ -1,5 +1,5 @@
 Groupyum::Application.routes.draw do
-  resources :users 
+  resources :users
   resources :messages do
     collection do
       post :delete_selected
@@ -8,6 +8,8 @@ Groupyum::Application.routes.draw do
   get "home/signup" => "home#signup"
   get "home/index"
   get "home/register"
+  get "home/activate"=>"home#activate", :as => :activate
+  get "home/test"
   get "favorite" => "favorites#show"
   get "favorite/show" => "favorites#show"
   

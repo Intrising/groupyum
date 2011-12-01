@@ -5,7 +5,8 @@ class User
   field :name, :type => String
   field :email, :type => String
   field :image, :type => String
-  field :fullinfo, :type => Hash
+  field :enabled, :type => Boolean, :default=>true
+  field :fullinfo, :type => Hash 
   attr_protected :provider, :uid, :password, :fullinfo
   has_many :sent_messages, :class_name=>'Message', :inverse_of=>:sender
   has_many :received_messages, :class_name=>'Message', :inverse_of=>:recipient
@@ -13,11 +14,11 @@ class User
   #:order => "#{table_name}.created_at DESC",
   #:conditions => ["#{table_name}.sender_deleted = ?", false]
 
-
   def self.create_with_omniauth(auth)
     create! do |user|
       user.provider = auth['provider']
       user.uid = auth['uid']
+      user.enabled = false if user.provider == 'identity'
       if auth['info']
         user.name = auth['info']['name'] || ""
         user.email = auth['info']['email'] || ""
