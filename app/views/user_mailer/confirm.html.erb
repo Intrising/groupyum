@@ -1,0 +1,7 @@
+<h1>歡迎加入<%= Settings.app_name %></h1> 
+<p>
+<label> 您好 <%= @user.name %>, </label> <br />
+</p>
+<p>
+我們已經收到您的註冊請求, 請點選 <%= link_to '這裡',user_url(@user) %> 啟用帳號
+</p>
