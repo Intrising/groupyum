@@ -35,6 +35,3 @@ class User
     self.received_messages.count( :conditions=>{ :read_at=>nil})
   end
 end
-)
-  end
-end

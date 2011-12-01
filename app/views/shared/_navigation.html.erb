@@ -1,9 +1,9 @@
 <% if user_signed_in? %><li class="dropdown" data-dropdown="dropdown">
       <a href="#" class="dropdown-toggle"><%= current_user.name %></a>
       <ul class="dropdown-menu">
-          <li><a href="/group">群�?資�?</a></li>
-          <li><a href="/">交�?紀??/a></li>
-          <li><a href="/users/<%= current_user.id %>">?�人資�?</a></li>
+          <li><a href="/group">群組資料</a></li>
+          <li><a href="/">交易紀錄</a></li>
+          <li><a href="/users/<%= current_user.id %>">個人資料</a></li>
           <li class="divider"></li>
           <li><%= link_to('Logout', signout_path) %></li>
       </ul>

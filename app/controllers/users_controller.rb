@@ -15,7 +15,8 @@ class UsersController < ApplicationController
     logger.info(params.inspect)
     @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
-      render 'users/edit', :notice => 'The Email account is success!'
+      redirect_to root_url, :notice => 'The Email account is success!'
+      #render 'users/edit', :notice => 'The Email account is success!'
       #redirect_to @user
     else
       render :edit

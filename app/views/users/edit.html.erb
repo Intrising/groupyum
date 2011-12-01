@@ -37,7 +37,7 @@
           <div class="clearfix single_field required">
               <label for="name">Name</label>
                   <div class="input">
-                      <input class="xlarge" name="name" size="20" type="text" value="<%= @user.name %>" <%= 'disabled' if @user.email.empty? || @user.email.blank? %>>
+                      <input class="xlarge" name="user[name]" size="20" type="text" value="<%= @user.name %>" <%= 'disabled' if @user.email.empty? || @user.email.blank? %>>
                       <span class="help-inline">Small snippet of help text</span>
                   </div>
           </div>
