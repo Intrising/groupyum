@@ -1,0 +1,66 @@
+﻿div.msg_received {
+  position: absolute;
+  top: 20px;
+  right: 10px;
+  font-size: 14px;
+  font-style: inherit;
+  font-weight: bold;
+  color: #404040;
+}
+
+div.msg_field {
+  padding-top: 8px;
+  padding-left: 15px;
+  font-size: 16px;
+  line-height: 16px;
+  float: left;
+  width: 130px;
+  text-align: left;
+  color: black;
+  font-weight: bold;
+  font-style: inherit;
+}
+
+.msg_level {
+  font-style: inherit;
+  font-weight: bold;
+  color: #404040;
+}
+
+.msg_readed {
+  color: gray;
+}
+
+.msg_unread {
+  color: black;
+  font-size: 15px;
+  font-style: inherit;
+  font-weight: bold;
+  color: #0069D6;
+}
+
+/* ################################################################################################# */
+div.newmsg {
+	margin: 0px auto;
+}
+
+div.newmsg_form {
+	margin:10px;padding: 10px;
+	background-color: #EAEAEA;
+	position: relative;
+}
+
+div.newmsg_actions {
+    text-align:center;
+}
+
+/* ################################################################################################# */
+div.msg_area {
+	margin: 0px auto;
+}
+
+div.msg_body {
+	margin:10px;padding: 10px;
+	background-color: white;
+	position: relative;
+}

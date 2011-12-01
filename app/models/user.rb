@@ -33,6 +33,11 @@ class User
   end
 
   def unread_message_count
-    self.received_messages.count( :conditions=>{ :read_at=>nil})
+    urmsg_count = 0
+    self.received_messages.each do |msg|
+      urmsg_count += 1 if msg.read_at.nil? 
+    end
+    urmsg_count
+    #self.received_messages.count( :conditions=>{ :read_at=>nil})
   end
 end

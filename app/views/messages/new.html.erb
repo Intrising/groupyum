@@ -1,2 +1,61 @@
-<h1>New mail</h1>
-<%= render 'form' %> 
+<% content_for :css_head do %>
+  <%= stylesheet_link_tag "ymessages" %>
+<% end %>
+<% content_for :js_head do %>
+  <%= javascript_include_tag "ymessages" %>
+<% end %>
+<% content_for :js_ready do %>
+    ymsg_new_init();
+<% end %>
+
+<div class="span16 page-header">
+	<h1>新郵件</h1>
+</div>	
+
+<div id="alert_area">
+</div>
+
+<% if flash[:notice] %>
+  <%= javascript_tag do %> 
+	$('#alert_area').empty().append(show_alert("error","註冊失敗!","<%= flash[:notice] %>"));
+	$('#alert_area').children(".alert-message").fadeIn("slow");
+  <% end %>
+<% end %>
+
+<div class="row span15 newmsg">
+  <%= form_for(@message, :html => { :id=>'formNewMsg' }) do |f| %>
+    <div class="newmsg_form">
+        <h3>撰寫</h3>
+        <div class="clearfix single_field required">
+            <label for="to">收件者</label>
+                <div class="input">
+                    <input class="xlarge" name="message[to]" size="30" type="text">
+                    <span class="help-inline">請輸入收件者站內姓名,至少一個喔^^</span>
+                </div>
+        </div>
+    
+        <div class="clearfix single_field required">
+            <label for="subject">主旨</label>
+                <div class="input">
+                    <input class="xlarge" name="message[subject]" size="30" type="text">
+                    <span class="help-inline">信件主題,還請必須填入</span>
+                </div>
+        </div>
+        
+        <div class="clearfix single_field required">
+          <label for="body">內容</label>
+            <div class="input">
+                <textarea class="xxlarge" name="message[body]" rows="5"></textarea>
+                <span class="help-block">
+                  請在這裡填寫想說的話.
+                </span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="actions newmsg_actions">
+      <button id="formNewMsg_btn" type="submit" class="btn primary">確認</button>&nbsp;
+      <a href="/messages" class="btn">取消</a>
+    </div>
+  <% end %>
+</div>

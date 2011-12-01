@@ -1,13 +1,60 @@
-<p><strong>From:</strong> <%= @message.sender == @user ? link_to("You", user_path(@user)) : link_to(h(@message.sender.name), user_path(@user)) %></p>
-<p><strong>Received:</strong> <%= @message.created_at.to_s(:long) %></p>
-<p><strong>To:</strong> <%= @message.recipient == @user ? link_to("You", user_path(@user)) : link_to(h(@message.recipient.name), user_path(@user)) %></p>
-<p>
-  <strong>Message</strong><br />
-  <%=h @message.body %>
-</p>
-<p>
-  <% if @message.recipient == @user %>
-	  <%= link_to "Reply", new_message_path( :reply_to => @message) %> |
+<% content_for :css_head do %>
+  <%= stylesheet_link_tag "ymessages" %>
+<% end %>
+<% content_for :js_head do %>
+<% end %>
+<% content_for :js_ready do %>
+<% end %>
+
+<div class="span16 page-header">
+	<h1>看郵件</h1>
+</div>	
+
+<div id="alert_area">
+</div>
+
+<% if flash[:notice] %>
+  <%= javascript_tag do %> 
+	$('#alert_area').empty().append(show_alert("error","註冊失敗!","<%= flash[:notice] %>"));
+	$('#alert_area').children(".alert-message").fadeIn("slow");
   <% end %>
-  <%= link_to "Inbox", messages_path %>
-</p>
+<% end %>
+
+<div class="row span15 newmsg">
+  <form>
+    <div class="newmsg_form">
+      <h3>
+        <span>來自  </span>
+        <%= @message.sender == @user ? link_to("You", user_path(@user)) : link_to(h(@message.sender.name), user_path(@user)) %>
+      </h3>
+      <div class="msg_received">
+        <%= @message.created_at.to_s(:long) %>
+      </div>
+      <div class="clearfix single_field">
+          <label class="msg_level" for="to">收件者:</label>
+          <div class="msg_field">
+            <%= @message.recipient == @user ? link_to("You", user_path(@user)) : link_to(h(@message.recipient.name), user_path(@user)) %>
+          </div>
+      </div>
+    
+      <div class="clearfix single_field">
+          <label class="msg_level" for="subject">主旨:</label>
+          <div class="msg_field">
+            <%=h @message.subject %>
+          </div>
+      </div>
+    
+      <div class="clearfix single_field required">
+          <label class="msg_level" class="body" for="subject">訊息:</label>
+          <div class="msg_field">
+            <%=h @message.body %>
+          </div>
+      </div>
+    </div>
+    
+    <div class="actions newmsg_actions">
+      <a href="/messages/new" class="btn primary">回復</a>&nbsp;
+      <a href="/messages" class="btn">收件匣</a>
+    </div>
+  </form>
+</div>

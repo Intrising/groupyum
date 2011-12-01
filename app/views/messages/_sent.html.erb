@@ -1,31 +1,66 @@
-<h2>Sent</h2>
-<table>
-	<tr>
-		<th>Del?</th>
-		<th>Subject</th>
-		<th>To</th>
-		<th>Sent</th>
-	</tr>
-	<% if @messages.size == 0 %>
-		<tr>
-			<td colspan="4">
-				No messages
-			</td>
-		</tr>
-	<% else %>
-		<% for message in @messages %>
-			<tr>
-				<td><%= check_box_tag "delete[]", message.id %></td>
-				<td><%= link_to h(message.subject), message_path( message) %></td>
-        <td><%= link_to h(message.recipient.name), user_path(@user) %></td>
-			  <td><%=h message.created_at.to_s(:long) %></td>
-			</tr>
-		<% end %>
-		<tr>
-			<td colspan="4">
-				<%= submit_tag "Delete" %>
-			</td>
-		</tr>
- 	<% end %>
-</table>
-<%= link_to "Inbox", messages_path%>
+<% content_for :css_head do %>
+  <%= stylesheet_link_tag "ymessages" %>
+<% end %>
+<% content_for :js_head do %>
+<% end %>
+<% content_for :js_ready do %>
+<% end %>
+
+<div class="span16 page-header">
+	<h1>寄件備份</h1>
+</div>	
+
+<div id="alert_area">
+</div>
+
+<% if flash[:success] %>
+  <%= javascript_tag do %> 
+	$('#alert_area').empty().append(show_alert("success","成功!","<%= flash[:success] %>"));
+	$('#alert_area').children(".alert-message").fadeIn("slow");
+  <% end %>
+<% end %>
+
+<div class="row span15 msg_area">
+  <form>
+    <div class="msg_body">
+    
+      <table>
+        <tr>
+        	<th>Subject</th>
+        	<th>To</th>
+        	<th>Sent</th>
+        	<th>Delete?</th>
+        </tr>
+        <% if @messages.size == 0 %>
+        	<tr>
+            <td colspan="4">
+            	No messages
+            </td>
+        	</tr>
+        <% else %>
+        	<% for message in @messages %>
+            <tr>
+            	<td>
+                  <%= link_to h(message.subject), message_path( message) %>
+            	</td>
+            	<td>
+            	  <%= link_to h(message.recipient.name), user_path(@user) %>
+            	</td>
+              <td>
+                <%=h message.created_at.to_s(:long) %>
+              </td>
+              <td>
+                <%= check_box_tag "delete[]", message.id %>
+              </td>
+            </tr>
+        	<% end %>
+        <% end %>
+      </table>
+    
+      <div class="actions newmsg_actions">
+        <a href="/messages" class="btn">收件匣</a>&nbsp;
+        <button type="submit" class="btn danger" value="Delete">刪除</button>
+      </div>
+    </div>  
+  </form>
+</div>
