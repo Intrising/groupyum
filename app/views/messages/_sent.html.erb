@@ -10,16 +10,6 @@
 	<h1>寄件備份</h1>
 </div>	
 
-<div id="alert_area">
-</div>
-
-<% if flash[:success] %>
-  <%= javascript_tag do %> 
-	$('#alert_area').empty().append(show_alert("success","成功!","<%= flash[:success] %>"));
-	$('#alert_area').children(".alert-message").fadeIn("slow");
-  <% end %>
-<% end %>
-
 <div class="row span15 msg_area">
   <form>
     <div class="msg_body">
@@ -58,7 +48,7 @@
       </table>
     
       <div class="actions newmsg_actions">
-        <a href="/messages" class="btn">收件匣</a>&nbsp;
+        <%=link_to "收件匣", messages_path(:mailbox => :inbox), :class=>"btn" %>&nbsp;
         <button type="submit" class="btn danger" value="Delete">刪除</button>
       </div>
     </div>  

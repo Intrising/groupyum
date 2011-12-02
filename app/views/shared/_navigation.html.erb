@@ -3,7 +3,7 @@
       <ul class="dropdown-menu">
           <li><a href="/group">群組資料</a></li>
           <li><a href="/">交易紀錄</a></li>
-          <li><a href="/users/<%= current_user.id %>">個人資料</a></li>
+          <li><%=link_to "個人資料", current_user %></li>
           <li class="divider"></li>
           <li><%= link_to('Logout', signout_path) %></li>
       </ul>

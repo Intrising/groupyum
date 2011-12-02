@@ -10,16 +10,6 @@
 	<h1>收件匣</h1>
 </div>	
 
-<div id="alert_area">
-</div>
-
-<% if flash[:success] %>
-  <%= javascript_tag do %> 
-	$('#alert_area').empty().append(show_alert("success","成功!","<%= flash[:success] %>"));
-	$('#alert_area').children(".alert-message").fadeIn("slow");
-  <% end %>
-<% end %>
-
 <div class="row span15 msg_area">
   <form>
     <div class="msg_body">
@@ -49,9 +39,9 @@
             	</td>
             	<td>
                 <% if message.read? %>
-                  <%= link_to h(message.sender.name), user_path(@user), :class => 'msg_readed' %>
+                  <%= link_to h(message.sender.name), user_path(message.sender), :class => 'msg_readed' %>
                 <% else %>
-            	  <%= link_to h(message.sender.name), user_path(@user), :class => 'msg_unread' %>
+            	  <%= link_to h(message.sender.name), user_path(message.sender), :class => 'msg_unread' %>
                 <% end %>
             	</td>
               <td>

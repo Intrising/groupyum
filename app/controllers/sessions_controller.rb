@@ -12,14 +12,20 @@ class SessionsController < ApplicationController
     @user = User.where(:provider => auth['provider'], :uid => auth['uid']).first || self.register_new_user( auth)
     session[:user_id] = @user.id
     if @user.email.empty? || @user.email.blank?
-      render 'users/edit', :notice => 'Please enter your email address.'
+      flash[:type] = "warning"
+      flash[:notice] = "Please enter your email address.!"
+      render 'users/edit'
     else
-      redirect_to root_url, :notice => "Signed in!"
+      flash[:type] = "success"
+      flash[:notice] = "Signed in!"
+      redirect_to root_url
     end
   end
   def destroy
     reset_session
-    redirect_to root_url, :notice => 'Signed out!'
+    flash[:type] = "success"
+    flash[:notice] = "Sign Out!"
+    redirect_to root_url
   end
   def show_providers
     @signinlinks = {
@@ -30,9 +36,13 @@ class SessionsController < ApplicationController
     end
   end
   def failure
-    redirect_to :back, :notice => "Authentication error: #{params[:message].humanize}"
+    flash[:type] = "error"
+    flash[:notice] = "Authentication error: #{params[:message].humanize}"
+    redirect_to :back
   end
   def signup_failure
-    redirect_to :back, :notice => "The Email account is existed!"
+    flash[:type] = "error"
+    flash[:notice] = "The Email account is existed!"
+    redirect_to :back
   end
 end

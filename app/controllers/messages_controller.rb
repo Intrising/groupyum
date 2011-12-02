@@ -29,7 +29,8 @@ class MessagesController < ApplicationController
     @message.sender = @user
     @message.recipient = User.first( :conditions=> {:name=>params[:message][:to]})
     if @message.save
-      flash[:success] = "Message sent!"
+      flash[:type] = "success"
+      flash[:notice] = "Message sent!"
       redirect_to messages_path
     else
       render :action => :new

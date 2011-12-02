@@ -3,14 +3,16 @@
         <div class="container fixed topbar_font">
             <h3 class="logo_box"><a href="/">Group<strong>Yum</strong></a></h3>
             <ul class="nav secondary-nav">
+              <% if current_user %>
                 <li><a href="/ydeal">我要搭團</a></li>
                 <li><a href="/favorite">我要開團</a></li>
                 <li><a href="/yshop">店家查詢</a></li>
-                <li><a href="/messages">訊息
-                  <% if current_user.unread_messages? %>
-                    <span class="label success" style="font-size:16px;"><%= current_user.unread_message_count %></span>
-                  <% end %>
+                <li><a href="<%= messages_path(:mailbox => :inbox)%>">訊息
+                  <span class="label success" style="font-size:16px;"><%= current_user.unread_message_count if current_user.unread_messages? %></span>
                 </a></li>
+              <% else %>
+                <li><a href="/yshop">店家查詢</a></li>
+              <% end %>
                 <%= render :partial => "shared/navigation" %>
             </ul>
         </div>

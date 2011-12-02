@@ -12,16 +12,6 @@
 	<h1>註冊</h1>
 </div>	
 
-<div id="alert_area">
-</div>
-
-<% if flash[:notice] %>
-  <%= javascript_tag do %> 
-	$('#alert_area').empty().append(show_alert("error","註冊失敗!","<%= flash[:notice] %>"));
-	$('#alert_area').children(".alert-message").fadeIn("slow");
-  <% end %>
-<% end %>
-
 <div class="row login_methods">
   <div class="span5 columns loginNew">  
 	<form id="formSignup" class="form-stacked formloginNew" accept-charset="UTF-8" action="/auth/identity/register" method="post">

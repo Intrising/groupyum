@@ -12,16 +12,6 @@
 	<h1>個人資料</h1>
 </div>	
 
-<div id="alert_area">
-</div>
-
-<% if flash[:notice] %>
-  <%= javascript_tag do %> 
-	$('#alert_area').empty().append(show_alert("success","恭喜!","<%= flash[:notice] %>"));
-	$('#alert_area').children(".alert-message").fadeIn("slow");
-  <% end %>
-<% end %>
-
 <% if @user.email.empty? || @user.email.blank? %>
   <%= javascript_tag do %> 
 	$('#alert_area').empty().append(show_alert("error","請輸入您的 Email !","<%= flash[:notice] %>"));

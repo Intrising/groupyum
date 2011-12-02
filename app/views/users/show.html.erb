@@ -1,6 +1,56 @@
-<h3>User Profile</h3>
-<p>Name: <%= @user.name %></p>
-<p>Email: <%= @user.email if @user.email %></p>
-<p>Provider: <%= @user.provider if @user.provider %></p> 
-<p>Image: <%= image_tag @user.image if @user.image %></p>
+<% content_for :css_head do %>
+  <%= stylesheet_link_tag "yuser_login","ymessages" %>
+<% end %>
+<% content_for :js_head do %>
+  <%= javascript_include_tag "yuser_login" %>
+<% end %>
+<% content_for :js_ready do %>
+    yuser_edit_init();
+<% end %>
 
+<div class="span16 page-header">
+	<h1>個人資料</h1>
+</div>	
+
+<% if @user.email.empty? || @user.email.blank? %>
+  <%= javascript_tag do %> 
+	$('#alert_area').empty().append(show_alert("error","請輸入您的 Email !","<%= flash[:notice] %>"));
+	$('#alert_area').children(".alert-message").fadeIn("slow");
+  <% end %>
+<% end %>
+
+
+<div class="row login_methods">
+  <div class="span5 columns loginNew">  
+	<form>
+      <div>
+        <div class="clearfix single_field">
+            <label class="msg_level" for="name">Name</label>
+            <div class="msg_field">
+              <%= @user.name %>
+            </div>
+        </div>
+
+        <div class="clearfix single_field">
+            <label class="msg_level" for="email">Email</label>
+            <div class="msg_field">
+              <%= @user.email if @user.email %>
+            </div>
+        </div>
+
+        <div class="clearfix single_field">
+            <label class="msg_level" for="provider">Provider</label>
+            <div class="msg_field">
+              <%= @user.provider if @user.provider %>
+            </div>
+        </div>
+      </div>
+
+	  <div style="text-align:center;">
+        <% if @user==current_user %>
+          <%=link_to "編輯", edit_user_path(@user), :class=>"btn primary" %>
+        <% end %>  
+      </div>
+	</form>
+  </div>	
+</div>
