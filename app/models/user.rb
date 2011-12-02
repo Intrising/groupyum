@@ -40,4 +40,6 @@ class User
     urmsg_count
     #self.received_messages.count( :conditions=>{ :read_at=>nil})
   end
+  has_many :created_groups, :class_name=>'Group', :inverse_of=>:admin
+  has_and_belongs_to_many :joined_groups, :class_name=>'Group', :inverse_of=>:members
 end
