@@ -8,7 +8,9 @@
                 <li><a href="/favorite">我要開團</a></li>
                 <li><a href="/yshop">店家查詢</a></li>
                 <li><a href="<%= messages_path(:mailbox => :inbox)%>">訊息
-                  <span class="label success" style="font-size:16px;"><%= current_user.unread_message_count if current_user.unread_messages? %></span>
+                  <% if current_user.unread_messages? %>
+                    <span class="label success" style="font-size:16px;"><%= current_user.unread_message_count %></span>
+                  <% end %>
                 </a></li>
               <% else %>
                 <li><a href="/yshop">店家查詢</a></li>
