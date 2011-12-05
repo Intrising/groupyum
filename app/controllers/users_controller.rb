@@ -19,9 +19,8 @@ class UsersController < ApplicationController
         UserMailer.welcome(@user).deliver
       end
       flash[:type] = "success"
-      flash[:notice] = "The Email account is success!"
+      flash[:notice] = t(:flash_email_saved)
       redirect_to root_url
-      #render 'users/edit', :notice => 'The Email account is success!'
       #redirect_to @user
     else
       render :edit

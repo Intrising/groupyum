@@ -30,7 +30,7 @@ class MessagesController < ApplicationController
     @message.recipient = User.first( :conditions=> {:name=>params[:message][:to]})
     if @message.save
       flash[:type] = "success"
-      flash[:notice] = "Message sent!"
+      flash[:notice] = t(:flash_msg_sent)
       redirect_to messages_path
     else
       render :action => :new
@@ -45,7 +45,8 @@ class MessagesController < ApplicationController
           @message = Message.find(id)
           @message.mark_deleted(@user) unless @message.nil?
         }
-        flash[:success] = "#{ndmsgs} Messages deleted!"
+      flash[:type] = "success"
+      flash[:notice] = t(:flash_msg_delete, :desc => "#{ndmsgs}")
       end
       redirect_to :back
     end

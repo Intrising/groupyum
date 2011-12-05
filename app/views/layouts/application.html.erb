@@ -21,8 +21,8 @@
 <div id="base_container" class="container container_box">
     <div id="alert_area"></div>
     <% if flash[:notice] %>
-      <%= javascript_tag do %> 
-    	$('#alert_area').empty().append(show_alert("<%= flash[:type] %>","<%= flash[:type] %>!","<%= flash[:notice] %>"));
+      <%= javascript_tag do %>
+    	$('#alert_area').empty().append(show_alert("<%= flash[:type] %>","<%=t flash[:type] %>","<%= flash[:notice] %>"));
     	$('#alert_area').children(".alert-message").fadeIn("slow");
       <% end %>
     <% end %>

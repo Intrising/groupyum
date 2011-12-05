@@ -14,7 +14,7 @@ class HomeController < ApplicationController
     user = User.find(userid)
     if user.nil? 
       flash[:type] = "error"
-      flash[:notice] = "No such actcode. Please login/register!"
+      flash[:notice] = t(:flash_user_none)
       redirect_to signin_path
     else
       user.enabled = true
@@ -22,11 +22,11 @@ class HomeController < ApplicationController
       cuser = current_user
       if cuser and cuser.email == user.email
         flash[:type] = "success"
-        flash[:notice] = "Your account has been activated!"
+        flash[:notice] = t(:flash_user_activated)
         redirect_to edit_user_path(user)
       else
         flash[:type] = "error"
-        flash[:notice] = "Please relogin!"
+        flash[:notice] = t(:flash_user_none)
         redirect_to signin_path
       end
     end

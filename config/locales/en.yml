@@ -2,4 +2,22 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  success: "Success! "
+  warning: "Warning! "
+  error: "Error! "
+  flash_signin: "Signed in."
+  flash_signout: "Sign Out!"
+  flash_email_enter: "Please enter your email address."
+  flash_email_confirm: "Please confirm your email address."
+  flash_email_existed: "The Email account is existed."
+  flash_email_saved: "The Email account is saved."
+  
+  flash_auth_err: "Authentication error: %{desc}"
+  
+  flash_user_none: "No such user. Please login/register again."
+  flash_user_activated: "Your account has been activated!"
+
+  flash_msg_sent: "Message sent completely."
+  flash_msg_delete: "%{desc} Messages deleted!"
+  
   hello: "Hello world"

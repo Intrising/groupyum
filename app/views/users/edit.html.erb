@@ -14,7 +14,7 @@
 
 <% if @user.email.empty? || @user.email.blank? %>
   <%= javascript_tag do %> 
-	$('#alert_area').empty().append(show_alert("error","請輸入您的 Email !","<%= flash[:notice] %>"));
+	$('#alert_area').empty().append(show_alert("warning","<%=t "warning" %>","<%=t :flash_email_enter %>"));
 	$('#alert_area').children(".alert-message").fadeIn("slow");
   <% end %>
 <% end %>

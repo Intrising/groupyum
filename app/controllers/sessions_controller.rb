@@ -17,25 +17,25 @@ class SessionsController < ApplicationController
     session[:user_id] = @user.id
     if @user.email.empty? || @user.email.blank?
       flash[:type] = "warning"
-      flash[:notice] = "Please enter your email address.!"
+      flash[:notice] = t(:flash_email_enter)
       render 'users/edit'
     else
       if !@user.enabled
         flash[:type] = "warning"
-        flash[:notice] = "Please confirm your email address !"
+        flash[:notice] = t(:flash_email_confirm)
         redirect_to root_url and return
       elsif is_new_usr
         UserMailer.welcome(@user).deliver
       end
       flash[:type] = "success"
-      flash[:notice] = "Signed in!"
+      flash[:notice] = t(:flash_signin)
       redirect_to root_url
     end
   end
   def destroy
     reset_session
     flash[:type] = "success"
-    flash[:notice] = "Sign Out!"
+    flash[:notice] = t(:flash_signout)
     redirect_to root_url
   end
   def show_providers
@@ -48,12 +48,12 @@ class SessionsController < ApplicationController
   end
   def failure
     flash[:type] = "error"
-    flash[:notice] = "Authentication error: #{params[:message].humanize}"
+    flash[:notice] = t(:flash_auth_err, :desc => "#{params[:message].humanize}")
     redirect_to :back
   end
   def signup_failure
     flash[:type] = "error"
-    flash[:notice] = "The Email account is existed!"
+    flash[:notice] = t(:flash_email_existed)
     redirect_to :back
   end
 end
