@@ -42,4 +42,7 @@ class User
   end
   has_many :created_groups, :class_name=>'Group', :inverse_of=>:admin
   has_and_belongs_to_many :joined_groups, :class_name=>'Group', :inverse_of=>:members
+  def ingroup?( group)
+    self.created_groups.include?(group) or self.joined_groups.include?(group)
+  end
 end

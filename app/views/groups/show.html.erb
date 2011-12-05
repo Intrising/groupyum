@@ -4,7 +4,10 @@
   <b>Name:</b>
   <%= @group.name %>
 </p>
-
+<p>
+  <b>Admin:</b>
+  <%= @group.admin %>
+</p>
 <p>
   <b>Tel:</b>
   <%= @group.tel %>
@@ -15,6 +18,22 @@
   <%= @group.dest_address %>
 </p>
 
+<% if @group.members.any? %>
+<p>
+    <b>Members:</b>
+    <% for member in @group.members %>
+      <%= link_to member.name, show_user_path(member) %><br/>
+    <% end %>
+</p>
+<% end %>
 
-<%= link_to 'Edit', edit_group_path(@group) %> |
+<% if @group.has_user?( @user) %>
+  <p> <%= link_to 'quit this group', "#" %></p>
+<% else %>  
+  <p> <%= link_to 'request to join this group', request_join_path( @group, @user) %></p>
+<% end%>
+
+<% if editable? %>
+  <%= link_to 'Edit', edit_group_path(@group) %> | 
+<% end %>  
 <%= link_to 'Back', groups_path %>
