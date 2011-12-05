@@ -9,7 +9,11 @@ class UserMailer < ActionMailer::Base
   #
   #   en.user_mailer.confirm.subject
   #
-  def confirm( user)
+  def confirm(user)
+    @user = user
+    mail( :to => @user.email, :subject => "Welcome to #{Settings.app_name}")
+  end
+  def welcome(user)
     @user = user
     mail( :to => @user.email, :subject => "Welcome to #{Settings.app_name}")
   end

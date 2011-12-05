@@ -13,8 +13,14 @@ class UsersController < ApplicationController
   def update
     logger.info(params.inspect)
     @user = User.find(params[:id])
+    is_new_usr = @user.email.empty? || @user.email.blank?
     if @user.update_attributes(params[:user])
-      redirect_to root_url, :notice => 'The Email account is success!'
+      if is_new_usr
+        UserMailer.welcome(@user).deliver
+      end
+      flash[:type] = "success"
+      flash[:notice] = "The Email account is success!"
+      redirect_to root_url
       #render 'users/edit', :notice => 'The Email account is success!'
       #redirect_to @user
     else
