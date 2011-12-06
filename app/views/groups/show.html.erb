@@ -6,7 +6,7 @@
 </p>
 <p>
   <b>Admin:</b>
-  <%= @group.admin %>
+  <%= link_to @group.admin.name, user_path(@group.admin) %>
 </p>
 <p>
   <b>Tel:</b>
@@ -18,22 +18,28 @@
   <%= @group.dest_address %>
 </p>
 
-<% if @group.members.any? %>
 <p>
+  <% if @group.members.any? %>
     <b>Members:</b>
     <% for member in @group.members %>
-      <%= link_to member.name, show_user_path(member) %><br/>
+      <%= link_to member.name, user_path(member) %><br/>
     <% end %>
+  <% else %>
+    <b>There is no members in this group.</b>
+  <% end %>
 </p>
-<% end %>
 
-<% if @group.has_user?( @user) %>
-  <p> <%= link_to 'quit this group', "#" %></p>
-<% else %>  
-  <p> <%= link_to 'request to join this group', request_join_path( @group, @user) %></p>
-<% end%>
+<p>
+  <% if not admin? %>
+    <% if @group.members.include?( @user) %>
+      <%= link_to 'quit this group', "#not implement yet" %>
+    <% else  %>
+      <%= link_to 'request to join this group', request_join_path( @group) %>
+    <% end%>
+  <% end %>
+</p>
 
 <% if editable? %>
   <%= link_to 'Edit', edit_group_path(@group) %> | 
-<% end %>  
+<% end %>
 <%= link_to 'Back', groups_path %>

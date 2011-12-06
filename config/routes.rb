@@ -1,6 +1,8 @@
 Groupyum::Application.routes.draw do
   resources :groups
-
+  match "groups/:id/request_join"=>"groups#request_join", :as=> :request_join
+  match "groups/:id/invite_join"=>"groups#invite_join", :as=> :invite_join
+  
   resources :users
   resources :messages do
     collection do
@@ -59,11 +61,14 @@ Groupyum::Application.routes.draw do
   #   end
 
   # Sample resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
+  namespace :admin do
+    # Directs /admin/users/* to Admin::UsersController
+    # (app/controllers/admin/users_controller.rb)
+    resources :users
+    # Directs /admin/groups/* to Admin::GroupsController
+    # (app/controllers/admin/groups_controller.rb)
+    resources :groups
+  end
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.

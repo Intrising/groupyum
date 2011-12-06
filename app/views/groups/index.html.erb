@@ -12,12 +12,14 @@
 
 <% @groups.each do |group| %>
   <tr>
-    <td><%= group.name %></td>
+    <td><%= link_to group.name, group_path(group) %></td>
     <td><%= group.tel %></td>
     <td><%= group.dest_address %></td>
-    <td><%= link_to 'Show', group %></td>
-    <td><%= link_to 'Edit', edit_group_path(group) %></td>
-    <td><%= link_to 'Destroy', group, confirm: 'Are you sure?', method: :delete %></td>
+    <% if false %>
+      <!-- move these to backend admin -->
+      <td><%= link_to 'Edit', edit_group_path(group) %></td>
+      <td><%= link_to 'Destroy', group, confirm: 'Are you sure?', method: :delete %></td>
+    <% end %>
   </tr>
 <% end %>
 </table>

@@ -6,6 +6,7 @@
               <% if current_user %>
                 <li><a href="/ydeal">我要搭團</a></li>
                 <li><a href="/favorite">我要開團</a></li>
+                <li><a href="/groups">瀏覽群組</a></li>
                 <li><a href="/yshop">店家查詢</a></li>
                 <li><a href="<%= messages_path(:mailbox => :inbox)%>">訊息
                   <% if current_user.unread_messages? %>

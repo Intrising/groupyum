@@ -1,17 +1,15 @@
 class GroupsController < ApplicationController
+  before_filter :find_user
+  before_filter :find_group, :except => [:index, :new, :create]
+  before_filter :check_editable, :only => [:edit, :update, :destroy]
   # GET /groups
   # GET /groups.json
-  before_filter :find_user
-  before_filter :find_group, :skip => [:index, :new]
-  before_filter :check_editable, :skip => [:index, :show, :invite_join, :request_join]
   def index
     @groups = Group.all
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @groups }
     end
-  end
-  def editable?
   end
   # GET /groups/1
   # GET /groups/1.json
@@ -42,7 +40,7 @@ class GroupsController < ApplicationController
   # POST /groups.json
   def create
     @group = Group.new(params[:group])
-
+    @group.admin = @user
     respond_to do |format|
       if @group.save
         format.html { redirect_to @group, notice: 'Group was successfully created.' }
@@ -83,13 +81,13 @@ class GroupsController < ApplicationController
   def invite_join( user)
     #UserMailer.invite_join( user)
     #Message.sysmsg :sender=>
-    render :text=>'#{@group.name} invites #{user.name} to join'
+    render :text=>"#{@group.name} invites #{@user.name} to join"
   end
 
   def request_join
     #UserMailer.request_join(user)
     #Message.sysmsg
-    render :text=>'#{@user.name} requests to join #{@group.name}'
+    render :text=>"#{@user.name} requests to join #{@group.name}"
   end
 
   def add_member
@@ -103,10 +101,7 @@ class GroupsController < ApplicationController
     tuser = User.find( params[:user_id])
     #TODO: check the auth token
     @group.del_member( tuser)
-    redirect_to show_group_url(@group), notice: "You've been successfully removed from #{@group.name}"
-  end
-  def editable?
-    current_user != @group.admin
+    redirect_to group_url(@group), notice: "You've been successfully removed from #{@group.name}"
   end
   private
     def find_user
@@ -116,6 +111,6 @@ class GroupsController < ApplicationController
       @group = Group.find( params[:id])
     end
     def check_editable
-      redirect_to show_group_url(@group), :alert=>"admission wrong" if current_user != @group.admin
+      redirect_to group_url(@group), :alert=>"admission wrong" if current_user != @group.admin
     end
 end
