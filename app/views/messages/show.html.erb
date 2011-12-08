@@ -36,8 +36,8 @@
     
       <div class="clearfix single_field required">
           <label class="msg_level" class="body" for="subject">訊息:</label>
-          <div class="msg_field">
-            <%=h @message.body %>
+          <div class="msg_field"> 
+            <%=raw @message.body %>
           </div>
       </div>
     </div>

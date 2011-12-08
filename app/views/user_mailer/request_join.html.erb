@@ -1,0 +1,13 @@
+<p>
+  <label>  親愛的 <%= @group.admin.name %> 您好, </label> <br />
+</p>
+
+<p>
+  本站使用者 <%= link_to  @user.name, user_path(@user) %> 請求加入您所開設的 <%= link_to @group.name, group_path(@group) %>
+<p>
+<p>
+  <%= link_to "將 #{@user.name} 加入 #{@group.name}", add_member_group_url(@group, :user_id=>@user.id) %>
+</p>
+<p>
+  請不要回覆本信件！
+</p>

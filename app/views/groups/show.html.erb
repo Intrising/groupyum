@@ -32,9 +32,10 @@
 <p>
   <% if not admin? %>
     <% if @group.members.include?( @user) %>
-      <%= link_to 'quit this group', "#not implement yet" %>
+      <%= button_to "Quit this group", :action => "del_member",  :confirm => "Are you sure?", :user_id=>@user.id %>
     <% else  %>
-      <%= link_to 'request to join this group', request_join_path( @group) %>
+      <%= button_to 'Request to join this group', :action =>'request_join'%> <br/>
+      <%= button_to "Join this group", :action => 'add_member', :user_id=>@user.id %>
     <% end%>
   <% end %>
 </p>

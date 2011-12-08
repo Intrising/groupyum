@@ -1,8 +1,14 @@
 Groupyum::Application.routes.draw do
-  resources :groups
-  match "groups/:id/request_join"=>"groups#request_join", :as=> :request_join
-  match "groups/:id/invite_join"=>"groups#invite_join", :as=> :invite_join
-  
+  #resources :groups
+  resources :groups do
+    member do
+      match :add_member
+      match :del_member
+      get :del_member
+      post :request_join
+      post :invite_join
+    end
+  end
   resources :users
   resources :messages do
     collection do

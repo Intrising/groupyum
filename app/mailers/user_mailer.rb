@@ -17,4 +17,13 @@ class UserMailer < ActionMailer::Base
     @user = user
     mail( :to => @user.email, :subject => "Welcome to #{Settings.app_name}")
   end
+  def request_join( user, group)
+    @user = user
+    @group = group
+    subj= "[#{Settings.app_name}] user #{@user.name} requests to join group #{@group.name}"
+    mail( :to => @group.admin.email, :subject =>subj )
+  end
+
+  def invite_join( user, group)
+  end
 end

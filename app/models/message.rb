@@ -10,6 +10,13 @@ class Message
   field :read_at, :type=>DateTime
   attr_accessor :to    #to access recipient.name in form
   before_save :set_created_at
+
+  def send_notification
+    self.sender= User.sysadmin
+    self.subject = "[notification] " + self.subject
+    self.save!
+  end
+
   def set_created_at
     self.created_at = Time.now
   end

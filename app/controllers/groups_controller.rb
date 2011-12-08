@@ -14,7 +14,6 @@ class GroupsController < ApplicationController
   # GET /groups/1
   # GET /groups/1.json
   def show
-    @user = current_user
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @group }
@@ -33,7 +32,6 @@ class GroupsController < ApplicationController
 
   # GET /groups/1/edit
   def edit
-    @group = Group.find(params[:id])
   end
 
   # POST /groups
@@ -55,8 +53,6 @@ class GroupsController < ApplicationController
   # PUT /groups/1
   # PUT /groups/1.json
   def update
-    @group = Group.find(params[:id])
-
     respond_to do |format|
       if @group.update_attributes(params[:group])
         format.html { redirect_to @group, notice: 'Group was successfully updated.' }
@@ -77,24 +73,27 @@ class GroupsController < ApplicationController
       format.json { head :ok }
     end
   end
-
+  
   def invite_join( user)
-    #UserMailer.invite_join( user)
-    #Message.sysmsg :sender=>
-    render :text=>"#{@group.name} invites #{@user.name} to join"
+    render :text=>"invite #{@user.name} to join #{@group.name}...not implement yet"
   end
 
   def request_join
-    #UserMailer.request_join(user)
-    #Message.sysmsg
-    render :text=>"#{@user.name} requests to join #{@group.name}"
+    em=UserMailer.request_join( @user, @group)
+    m = Message.new
+    m.recipient = @user
+    m.subject = em.subject
+    m.body = em.body 
+    m.send_notification
+    em.deliver
+    redirect_to group_url( @group), notice: "a requesting mail has been sent."
   end
 
   def add_member
-    tuser = User.find( params[:user_id])
     #TODO: check the auth token
+    tuser = User.find( params[:user_id])
     @group.add_member( tuser)
-    redirect_to @group, notice: "You've been successfully added to #{@group.name}"
+    redirect_to group_url(@group), notice: "You've been successfully added to #{@group.name}"
   end
 
   def del_member
@@ -113,4 +112,5 @@ class GroupsController < ApplicationController
     def check_editable
       redirect_to group_url(@group), :alert=>"admission wrong" if current_user != @group.admin
     end
+
 end

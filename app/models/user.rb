@@ -14,6 +14,9 @@ class User
   #:order => "#{table_name}.created_at DESC",
   #:conditions => ["#{table_name}.sender_deleted = ?", false]
 
+  def self.sysadmin
+    User.find_or_create_by :name=>'sysadmin', :email=>'donotreply@groupyum.com', :provider=>'identity'
+  end
   def self.create_with_omniauth(auth)
     create! do |user|
       user.provider = auth['provider']
