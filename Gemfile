@@ -40,6 +40,7 @@ gem 'capistrano'
 
 
 group :development, :test do
+  gem 'rmarshal'
   gem 'rspec-rails'
 end
 # To use debugger
