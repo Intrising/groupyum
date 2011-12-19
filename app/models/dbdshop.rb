@@ -1,3 +1,3 @@
-class Rawshop
+class Dbdshop
   include Mongoid::Document
 end 
