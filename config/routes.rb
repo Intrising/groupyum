@@ -1,5 +1,5 @@
 Groupyum::Application.routes.draw do
-  #resources :groups
+  resources :shops
   resources :groups do
     member do
       match :add_member
