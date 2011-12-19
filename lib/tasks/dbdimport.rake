@@ -1,7 +1,7 @@
 require 'rake'
 namespace :db do
-	desc 'import dinbendon shop database from python mar into Rawshop model'
-	task :importdbd => :environment do
+	desc 'import dinbendon shop database from python mar into Dbdshop model'
+	task :dbdimport => :environment do
 		require 'rmarshal'
 		require 'open-uri'
 		marfn = 'http://db.tt/daa62yuE'
@@ -10,9 +10,9 @@ namespace :db do
 		puts 'loading the marshal file'
 		hdata = unmarshal fp
 		puts "unmarshal done.  There are #{hdata.count} records"
-		Rawshop.destroy_all
+		Dbdshop.destroy_all
 		hdata.each do |h| 
-			s=Rawshop.new( h)
+			s=Dbdshop.new( h)
 			s.save!
 			puts "#{h['name']} saved"
 		end
