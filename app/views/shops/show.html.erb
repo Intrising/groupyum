@@ -1,5 +1,45 @@
 <p id="notice"><%= notice %></p>
+<p>
+  <b>Name:</b>
+  <%= @shop.name %> <br/>
+  <%= @shop.brief %> 
+</p>
 
+<p>
+  <b>Type:</b>
+  <%= @shop.type %>
+</p>
+
+<p>
+  <b>Service Area:</b>
+  <%= @shop.servarea %>
+</p>
+<p>
+  <b>Tel:</b>
+  <%= @shop.tel %>
+</p>
+
+<p>
+  <b>Address:</b>
+  <%= @shop.address %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @shop.email %>
+</p>
+<p>
+  <b>Details:</b>
+  <%= @shop.details %>
+</p>
+<p>
+  <b>Order Notice:</b>
+  <%= @shop.order_notice %>
+</p>
+
+<p>
+  <%= render 'menu' %>
+</p>
 
 <%= link_to 'Edit', edit_shop_path(@shop) %> |
 <%= link_to 'Back', shops_path %>

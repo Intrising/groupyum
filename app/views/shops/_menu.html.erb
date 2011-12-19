@@ -1,0 +1,17 @@
+<% @shop.categories.each do |category| %>
+  <ul> <%= category.name %>
+    <% category.dishes.each do |dish| %>
+      <li> <%= dish.name%> <%= dish.bprice %> <ul> 
+        <% if true %>
+          <% dish.questions.each do |question| %>
+            <li> <%= question.desc %>  <ul>
+              <% question.options.each do |option| %>
+                <li> <%= "#{option.desc} - #{option.price}"  %>  </li>
+              <% end %>
+            </ul></li>
+          <% end %>
+        <% end %>
+      </li></ul> 
+    <% end %>
+  </ul>
+<% end %>
