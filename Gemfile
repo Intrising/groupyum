@@ -27,6 +27,7 @@ gem 'omniauth-identity'
 gem 'slim'
 gem 'twitter-bootstrap-rails'
 gem 'simple_form'
+gem 'kaminari'
 
 # To use ActiveModel has_secure_password
 gem "bcrypt-ruby", :require => "bcrypt"
@@ -38,6 +39,10 @@ gem 'unicorn'
 # Deploy with Capistrano
 gem 'capistrano'
 
+group :development, :test do
+  gem 'rmarshal'
+  gem 'rspec-rails'
+end
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
 

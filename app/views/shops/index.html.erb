@@ -1,0 +1,22 @@
+<h1>Listing shops</h1>
+<%= paginate @shops %>
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+<% @shops.each do |shop| %>
+  <tr>
+    <td><%= link_to shop.name, shop_path(shop) %></td>
+    <td><%= shop.address %> </td>
+    <td><%= shop.tel %> </td>
+    <td><%= link_to shop.servarea, shop_path(shop) %> </td>
+    <td><%= link_to 'Destroy', shop, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Shop', new_shop_path %>
