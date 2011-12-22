@@ -1,7 +1,7 @@
 <% if user_signed_in? %><li class="dropdown" data-dropdown="dropdown">
       <a href="#" class="dropdown-toggle"><%= current_user.name %></a>
       <ul class="dropdown-menu">
-          <li><a href="/group">群組資料</a></li>
+          <li><a href="/mygroups">群組資料</a></li>
           <li><a href="/">交易紀錄</a></li>
           <li><%=link_to "個人資料", current_user %></li>
           <li class="divider"></li>

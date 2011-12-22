@@ -22,6 +22,8 @@ Groupyum::Application.routes.draw do
   get "home/test"
   get "favorite" => "favorites#show"
   get "favorite/show" => "favorites#show"
+
+  match '/mygroups' => 'groups#mygroups'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

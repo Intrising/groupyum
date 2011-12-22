@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController
   before_filter :find_user
-  before_filter :find_group, :except => [:index, :new, :create]
+  before_filter :find_group, :except => [:index, :new, :create, :mygroups]
   before_filter :check_editable, :only => [:edit, :update, :destroy]
   # GET /groups
   # GET /groups.json
@@ -102,6 +102,11 @@ class GroupsController < ApplicationController
     @group.del_member( tuser)
     redirect_to group_url(@group), notice: "You've been successfully removed from #{@group.name}"
   end
+
+  def mygroups
+    logger.info("mygroups:QQQQQQQQQQQQQQQ")
+  end
+
   private
     def find_user
       @user = current_user
