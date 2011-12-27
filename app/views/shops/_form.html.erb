@@ -11,6 +11,21 @@
     </div>
   <% end %>
 
+  <p>
+    <%= f.label :name, "Shop name" %>
+    <%= f.text_field :name %> <br/>
+    <%= f.label :address, "Address" %>
+    <%= f.text_field :address %><br/>
+    <%= f.label :tel, "Tel" %>
+    <%= f.telephone_field :tel %>
+  </p>
+  <p>
+    <%= f.fields_for(:categories) do |catef| %>
+      <p>
+        <%= render "edit_category", :f=>catef %>
+      </p>
+    <% end %>
+  </p>
   <div class="actions">
     <%= f.submit %>
   </div>
